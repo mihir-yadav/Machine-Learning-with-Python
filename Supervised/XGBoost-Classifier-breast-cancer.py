@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 cancer = load_breast_cancer()
 X_train, X_test, y_train, y_test = train_test_split(cancer.data, cancer.target, stratify=cancer.target, random_state=0)
 
-# depth = range(1,11)
+
 learning_rates =[x * 0.004 for x in range(1, 61)]
 training_accuracy = []
 test_accuracy = []
@@ -19,9 +19,6 @@ for r in learning_rates:
 	model = XGBClassifier(learning_rate = r)
 
 	model.fit(X_train, y_train)
-	# clf = KNeighborsClassifier(n_neighbors=n_neighbors)
-	# clf.fit(X_train, y_train)
-	#record training set accuracy
 	training_accuracy.append(model.score(X_train, y_train))
 	best_train_score = max(best_train_score,model.score(X_train, y_train))
 	#record generalization accuracy
